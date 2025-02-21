@@ -1,0 +1,28 @@
+﻿@page "/counter"
+@using Traveler.Services
+@rendermode InteractiveServer
+@inject IMessagingService MessageService;
+
+<PageTitle>SendMessage</PageTitle>
+
+<h1>SendMessage</h1>
+
+<p></p>
+<p>
+    <textarea @bind="_token" rows="5" style="overflow: hidden;resize: none;min-width: 100px;max-width: 100%;box-sizing: border-box;width: 100%"></textarea>
+</p>
+<p>
+    <button class="btn btn-primary" @onclick="SendMessage">Send Message</button>
+</p>
+
+
+@code {
+    private string _token = "cvYzCQoxTiW2kI4VsCAIpM:APA91bG2FYcqwRf2yDmg07otVNq4AYsLzaKB89qwpEKHMupKOCNHPNLQK7gctmaoFqpxK6h_H-VkBuiCyv8nl6-dt4IhKJ-a6nRCBzQ_Vg_GnzoSBBH0Hcc";
+    
+    private async Task SendMessage()
+    {
+        Console.WriteLine($"token: {_token}");
+        await MessageService.SendMessage(_token);
+    }
+
+}
